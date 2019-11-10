@@ -1,0 +1,54 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.0": {
+      "WebServerConsole/1.0.0": {
+        "dependencies": {
+          "BasicWebServer": "1.0.0"
+        },
+        "runtime": {
+          "WebServerConsole.dll": {}
+        }
+      },
+      "Nancy.Hosting.Self/2.0.0": {
+        "runtime": {
+          "lib/net452/Nancy.Hosting.Self.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
+      "BasicWebServer/1.0.0": {
+        "dependencies": {
+          "Nancy.Hosting.Self": "2.0.0"
+        },
+        "runtime": {
+          "BasicWebServer.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "WebServerConsole/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Nancy.Hosting.Self/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bVusVYasJmwhJr4RVeVZYZctrUiME1JTZmydrnrxjMZBIEBZsGEmLIxcxXazEAvzfG6Z8dB2ocwlZCt1aX+70g==",
+      "path": "nancy.hosting.self/2.0.0",
+      "hashPath": "nancy.hosting.self.2.0.0.nupkg.sha512"
+    },
+    "BasicWebServer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
