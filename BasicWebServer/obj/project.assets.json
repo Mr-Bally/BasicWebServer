@@ -1,37 +1,11 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.0": {
-      "Nancy.Hosting.Self/2.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net452/Nancy.Hosting.Self.dll": {}
-        },
-        "runtime": {
-          "lib/net452/Nancy.Hosting.Self.dll": {}
-        }
-      }
-    }
+    ".NETCoreApp,Version=v3.0": {}
   },
-  "libraries": {
-    "Nancy.Hosting.Self/2.0.0": {
-      "sha512": "bVusVYasJmwhJr4RVeVZYZctrUiME1JTZmydrnrxjMZBIEBZsGEmLIxcxXazEAvzfG6Z8dB2ocwlZCt1aX+70g==",
-      "type": "package",
-      "path": "nancy.hosting.self/2.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net452/Nancy.Hosting.Self.dll",
-        "lib/net452/Nancy.Hosting.Self.xml",
-        "nancy.hosting.self.2.0.0.nupkg.sha512",
-        "nancy.hosting.self.nuspec"
-      ]
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.0": [
-      "Nancy.Hosting.Self >= 2.0.0"
-    ]
+    ".NETCoreApp,Version=v3.0": []
   },
   "packageFolders": {
     "C:\\Users\\samba\\.nuget\\packages\\": {},
@@ -73,12 +47,6 @@
     },
     "frameworks": {
       "netcoreapp3.0": {
-        "dependencies": {
-          "Nancy.Hosting.Self": {
-            "target": "Package",
-            "version": "[2.0.0, )"
-          }
-        },
         "imports": [
           "net461",
           "net462",
@@ -97,17 +65,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Nancy.Hosting.Self 2.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Nancy.Hosting.Self",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.0"
-      ]
-    }
-  ]
+  }
 }

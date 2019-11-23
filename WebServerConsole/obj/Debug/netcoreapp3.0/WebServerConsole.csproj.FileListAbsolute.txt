@@ -13,3 +13,17 @@ C:\Users\samba\source\repos\WebServerConsole\obj\Debug\netcoreapp3.0\WebServerCo
 C:\Users\samba\source\repos\WebServerConsole\obj\Debug\netcoreapp3.0\WebServerConsole.dll
 C:\Users\samba\source\repos\WebServerConsole\obj\Debug\netcoreapp3.0\WebServerConsole.pdb
 C:\Users\samba\source\repos\WebServerConsole\bin\Debug\netcoreapp3.0\Nancy.Hosting.Self.dll
+C:\Users\samba\source\repos\Webserver\WebServerConsole\bin\Debug\netcoreapp3.0\WebServerConsole.exe
+C:\Users\samba\source\repos\Webserver\WebServerConsole\bin\Debug\netcoreapp3.0\WebServerConsole.deps.json
+C:\Users\samba\source\repos\Webserver\WebServerConsole\bin\Debug\netcoreapp3.0\WebServerConsole.runtimeconfig.json
+C:\Users\samba\source\repos\Webserver\WebServerConsole\bin\Debug\netcoreapp3.0\WebServerConsole.runtimeconfig.dev.json
+C:\Users\samba\source\repos\Webserver\WebServerConsole\bin\Debug\netcoreapp3.0\WebServerConsole.dll
+C:\Users\samba\source\repos\Webserver\WebServerConsole\bin\Debug\netcoreapp3.0\WebServerConsole.pdb
+C:\Users\samba\source\repos\Webserver\WebServerConsole\bin\Debug\netcoreapp3.0\BasicWebServer.dll
+C:\Users\samba\source\repos\Webserver\WebServerConsole\bin\Debug\netcoreapp3.0\BasicWebServer.pdb
+C:\Users\samba\source\repos\Webserver\WebServerConsole\obj\Debug\netcoreapp3.0\WebServerConsole.csprojAssemblyReference.cache
+C:\Users\samba\source\repos\Webserver\WebServerConsole\obj\Debug\netcoreapp3.0\WebServerConsole.AssemblyInfoInputs.cache
+C:\Users\samba\source\repos\Webserver\WebServerConsole\obj\Debug\netcoreapp3.0\WebServerConsole.AssemblyInfo.cs
+C:\Users\samba\source\repos\Webserver\WebServerConsole\obj\Debug\netcoreapp3.0\WebServerConsole.csproj.CopyComplete
+C:\Users\samba\source\repos\Webserver\WebServerConsole\obj\Debug\netcoreapp3.0\WebServerConsole.dll
+C:\Users\samba\source\repos\Webserver\WebServerConsole\obj\Debug\netcoreapp3.0\WebServerConsole.pdb

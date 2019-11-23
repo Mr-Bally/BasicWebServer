@@ -6,3 +6,11 @@ C:\Users\samba\source\repos\BasicWebServer\obj\Debug\netcoreapp3.0\BasicWebServe
 C:\Users\samba\source\repos\BasicWebServer\obj\Debug\netcoreapp3.0\BasicWebServer.dll
 C:\Users\samba\source\repos\BasicWebServer\obj\Debug\netcoreapp3.0\BasicWebServer.pdb
 C:\Users\samba\source\repos\BasicWebServer\obj\Debug\netcoreapp3.0\BasicWebServer.csprojAssemblyReference.cache
+C:\Users\samba\source\repos\Webserver\BasicWebServer\bin\Debug\netcoreapp3.0\BasicWebServer.deps.json
+C:\Users\samba\source\repos\Webserver\BasicWebServer\bin\Debug\netcoreapp3.0\BasicWebServer.dll
+C:\Users\samba\source\repos\Webserver\BasicWebServer\bin\Debug\netcoreapp3.0\BasicWebServer.pdb
+C:\Users\samba\source\repos\Webserver\BasicWebServer\obj\Debug\netcoreapp3.0\BasicWebServer.csprojAssemblyReference.cache
+C:\Users\samba\source\repos\Webserver\BasicWebServer\obj\Debug\netcoreapp3.0\BasicWebServer.AssemblyInfoInputs.cache
+C:\Users\samba\source\repos\Webserver\BasicWebServer\obj\Debug\netcoreapp3.0\BasicWebServer.AssemblyInfo.cs
+C:\Users\samba\source\repos\Webserver\BasicWebServer\obj\Debug\netcoreapp3.0\BasicWebServer.dll
+C:\Users\samba\source\repos\Webserver\BasicWebServer\obj\Debug\netcoreapp3.0\BasicWebServer.pdb
