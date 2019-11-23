@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Net;
+using System.Text;
 
 namespace BasicWebServer
 {
@@ -8,5 +9,6 @@ namespace BasicWebServer
         public byte[] Data { get; set; }
         public string ContentType { get; set; }
         public Encoding Encoding { get; set; }
+        public HttpStatusCode ResponseCode { get; set; }
     }
 }

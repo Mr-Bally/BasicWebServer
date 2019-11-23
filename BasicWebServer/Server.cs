@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
@@ -63,16 +65,14 @@ namespace BasicWebServer
             sem.Release();
             Log(context.Request);
             var request = context.Request;
-            //var path = request.RawUrl.LeftOf("?");
             var path = request.RawUrl;
             var method = request.HttpMethod;
             //var parms = request.RawUrl.RightOf("?");
             //var kvParams = GetKeyValues(parms);
             //router.Route(verb, path, kvParams);
-            var response = "Hello Browser!";
-            var encoded = Encoding.UTF8.GetBytes(response);
-            context.Response.ContentLength64 = encoded.Length;
-            context.Response.OutputStream.Write(encoded, 0, encoded.Length);
+            var response = router.Route(request.HttpMethod, path, new Dictionary<string, string>());
+            context.Response.ContentLength64 = response.Data.Length;
+            context.Response.OutputStream.Write(response.Data, 0, response.Data.Length);
             context.Response.OutputStream.Close();
         }
 
@@ -83,6 +83,8 @@ namespace BasicWebServer
 
         private string GetWebsitePath()
         {
+            var path = ConfigurationManager.AppSettings.Get("websiteRoot");
+
             // TODO: Alter to get path from config file
             string websitePath = Assembly.GetExecutingAssembly().Location;
 

@@ -14,3 +14,4 @@ C:\Users\samba\source\repos\Webserver\BasicWebServer\obj\Debug\netcoreapp3.0\Bas
 C:\Users\samba\source\repos\Webserver\BasicWebServer\obj\Debug\netcoreapp3.0\BasicWebServer.AssemblyInfo.cs
 C:\Users\samba\source\repos\Webserver\BasicWebServer\obj\Debug\netcoreapp3.0\BasicWebServer.dll
 C:\Users\samba\source\repos\Webserver\BasicWebServer\obj\Debug\netcoreapp3.0\BasicWebServer.pdb
+C:\Users\samba\source\repos\Webserver\BasicWebServer\bin\Debug\netcoreapp3.0\BasicWebServer.dll.config

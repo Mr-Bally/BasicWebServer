@@ -41,6 +41,10 @@ namespace BasicWebServer
                 string fullPath = Path.Combine(WebsitePath, path);  // Get this from config
                 ret = extInfo.Loader(fullPath, ext, extInfo);
             }
+            else
+            {
+                ret = new ResponsePacket() { ResponseCode = HttpStatusCode.NotFound  };
+            }
 
             return ret;
         }
@@ -86,7 +90,7 @@ namespace BasicWebServer
             return ret;
         }
 
-        private static void Respond(HttpListenerResponse response, ResponsePacket resp)
+        private void Respond(HttpListenerResponse response, ResponsePacket resp)
         {
             response.ContentType = resp.ContentType;
             response.ContentLength64 = resp.Data.Length;
