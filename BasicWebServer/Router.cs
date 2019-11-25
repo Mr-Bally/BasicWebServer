@@ -17,29 +17,27 @@ namespace BasicWebServer
             WebsitePath = path;
             extFolderMap = new Dictionary<string, ExtensionInfo>()
             {
-              {"ico", new ExtensionInfo() { Loader=ImageLoader, ContentType="image/ico" }},
-              {"png", new ExtensionInfo() { Loader=ImageLoader, ContentType="image/png" }},
-              {"jpg", new ExtensionInfo() { Loader=ImageLoader, ContentType="image/jpg" }},
-              {"gif", new ExtensionInfo() { Loader=ImageLoader, ContentType="image/gif" }},
-              {"bmp", new ExtensionInfo() { Loader=ImageLoader, ContentType="image/bmp" }},
-              {"html", new ExtensionInfo() { Loader=PageLoader, ContentType="text/html" }},
-              {"css", new ExtensionInfo() { Loader=FileLoader, ContentType="text/css" }},
-              {"js", new ExtensionInfo() { Loader=FileLoader, ContentType="text/javascript" }},
-              {"", new ExtensionInfo() { Loader=PageLoader, ContentType="text/html" }},
+              {".ico", new ExtensionInfo() { Loader=ImageLoader, ContentType="image/ico", FilePath="/Content/" }},
+              {".png", new ExtensionInfo() { Loader=ImageLoader, ContentType="image/png", FilePath="/Content/" }},
+              {".jpg", new ExtensionInfo() { Loader=ImageLoader, ContentType="image/jpg", FilePath="/Content/" }},
+              {".gif", new ExtensionInfo() { Loader=ImageLoader, ContentType="image/gif", FilePath="/Content/" }},
+              {".bmp", new ExtensionInfo() { Loader=ImageLoader, ContentType="image/bmp", FilePath="/Content/" }},
+              {".html", new ExtensionInfo() { Loader=PageLoader, ContentType="text/html", FilePath="/HTML/" }},
+              {".css", new ExtensionInfo() { Loader=FileLoader, ContentType="text/css", FilePath="/CSS/" }},
+              {".js", new ExtensionInfo() { Loader=FileLoader, ContentType="text/javascript", FilePath="/Javascript/" }},
+              {"", new ExtensionInfo() { Loader=PageLoader, ContentType="text/html", FilePath="/HTML/" }},
             };
         }
 
-        public ResponsePacket Route(string verb, string path, Dictionary<string, string> kvParams)
+        public ResponsePacket Route(string method, string path, Dictionary<string, string> kvParams)
         {
-            // Need to strip ext info from url 
-            var ext = string.Empty;
+            var ext = Path.GetExtension(path);
             ExtensionInfo extInfo;
             ResponsePacket ret = null;
 
             if (extFolderMap.TryGetValue(ext, out extInfo))
             {
-                string fullPath = Path.Combine(WebsitePath, path);  // Get this from config
-                ret = extInfo.Loader(fullPath, ext, extInfo);
+                ret = extInfo.Loader(path, ext, extInfo);
             }
             else
             {
@@ -49,8 +47,9 @@ namespace BasicWebServer
             return ret;
         }
 
-        private ResponsePacket ImageLoader(string fullPath, string ext, ExtensionInfo extInfo)
+        private ResponsePacket ImageLoader(string path, string ext, ExtensionInfo extInfo)
         {
+            var fullPath = (WebsitePath + extInfo.FilePath + Path.GetFileName(path));
             var fStream = new FileStream(fullPath, FileMode.Open, FileAccess.Read);
             var br = new BinaryReader(fStream);
             var ret = new ResponsePacket() { Data = br.ReadBytes((int)fStream.Length), ContentType = extInfo.ContentType };
@@ -60,31 +59,25 @@ namespace BasicWebServer
             return ret;
         }
 
-        private ResponsePacket FileLoader(string fullPath, string ext, ExtensionInfo extInfo)
+        private ResponsePacket FileLoader(string path, string ext, ExtensionInfo extInfo)
         {
-            var text = File.ReadAllText(fullPath);
+            var text = File.ReadAllText(WebsitePath + extInfo.FilePath + Path.GetFileName(path));
             var ret = new ResponsePacket() { Data = Encoding.UTF8.GetBytes(text), ContentType = extInfo.ContentType, Encoding = Encoding.UTF8 };
 
             return ret;
         }
 
-        private ResponsePacket PageLoader(string fullPath, string ext, ExtensionInfo extInfo)
+        private ResponsePacket PageLoader(string path, string ext, ExtensionInfo extInfo)
         {
             var ret = new ResponsePacket();
 
-            if (fullPath == WebsitePath) 
+            if (path == "/")
             {
                 ret = Route("GET", "/index.html", null);
             }
             else
             {
-                if (string.IsNullOrEmpty(ext))
-                {
-                    fullPath = fullPath + ".html";
-                }
-
-                //fullPath = alter to include pages
-                ret = FileLoader(fullPath, ext, extInfo);
+                ret = FileLoader(path, ext, extInfo);
             }
 
             return ret;

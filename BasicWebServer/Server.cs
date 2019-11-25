@@ -83,13 +83,7 @@ namespace BasicWebServer
 
         private string GetWebsitePath()
         {
-            var path = ConfigurationManager.AppSettings.Get("websiteRoot");
-
-            // TODO: Alter to get path from config file
-            string websitePath = Assembly.GetExecutingAssembly().Location;
-
-            return websitePath;
+            return ConfigurationManager.AppSettings.Get("websiteRoot");
         }
-
     }
 }
