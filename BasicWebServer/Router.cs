@@ -10,7 +10,7 @@ namespace BasicWebServer
     {
         public string WebsitePath { get; set; }
 
-        private Dictionary<string, ExtensionInfo> extFolderMap;
+        private readonly Dictionary<string, ExtensionInfo> extFolderMap;
 
         public Router(string path)
         {
@@ -32,10 +32,9 @@ namespace BasicWebServer
         public ResponsePacket Route(string method, string path, Dictionary<string, string> kvParams)
         {
             var ext = Path.GetExtension(path);
-            ExtensionInfo extInfo;
             ResponsePacket ret = null;
 
-            if (extFolderMap.TryGetValue(ext, out extInfo))
+            if (extFolderMap.TryGetValue(ext, out ExtensionInfo extInfo))
             {
                 ret = extInfo.Loader(path, ext, extInfo);
             }
@@ -69,7 +68,7 @@ namespace BasicWebServer
 
         private ResponsePacket PageLoader(string path, string ext, ExtensionInfo extInfo)
         {
-            var ret = new ResponsePacket();
+            ResponsePacket ret;
 
             if (path == "/")
             {

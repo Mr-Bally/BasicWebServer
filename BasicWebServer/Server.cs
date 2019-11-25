@@ -66,7 +66,7 @@ namespace BasicWebServer
             Log(context.Request);
             var request = context.Request;
             var path = request.RawUrl;
-            var method = request.HttpMethod;
+            //var method = request.HttpMethod;
             //var parms = request.RawUrl.RightOf("?");
             //var kvParams = GetKeyValues(parms);
             //router.Route(verb, path, kvParams);
