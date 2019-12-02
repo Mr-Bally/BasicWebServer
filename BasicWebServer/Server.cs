@@ -19,7 +19,7 @@ namespace BasicWebServer
         private Router router;
 
         public static int maxSimultaneousConnections = 20;
-        
+
         private static Semaphore sem = new Semaphore(maxSimultaneousConnections, maxSimultaneousConnections);
 
         public void Start()
@@ -71,9 +71,12 @@ namespace BasicWebServer
             //var kvParams = GetKeyValues(parms);
             //router.Route(verb, path, kvParams);
             var response = router.Route(request.HttpMethod, path, new Dictionary<string, string>());
-            context.Response.ContentLength64 = response.Data.Length;
-            context.Response.OutputStream.Write(response.Data, 0, response.Data.Length);
-            context.Response.OutputStream.Close();
+            if (response.ResponseCode == HttpStatusCode.NotFound)
+            {
+                response = router.Route("GET", "/Error.html", null);
+            }
+
+            Respond(context.Response, response);
         }
 
         private void Log(HttpListenerRequest request)
@@ -84,6 +87,16 @@ namespace BasicWebServer
         private string GetWebsitePath()
         {
             return ConfigurationManager.AppSettings.Get("websiteRoot");
+        }
+
+        private void Respond(HttpListenerResponse response, ResponsePacket resp)
+        {
+            response.ContentType = resp.ContentType;
+            response.ContentLength64 = resp.Data.Length;
+            response.OutputStream.Write(resp.Data, 0, resp.Data.Length);
+            response.ContentEncoding = resp.Encoding;
+            response.StatusCode = (int)HttpStatusCode.OK;
+            response.OutputStream.Close();
         }
     }
 }

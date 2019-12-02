@@ -12,6 +12,8 @@ namespace BasicWebServer
 
         private readonly Dictionary<string, ExtensionInfo> extFolderMap;
 
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         public Router(string path)
         {
             WebsitePath = path;
@@ -40,7 +42,7 @@ namespace BasicWebServer
             }
             else
             {
-                ret = new ResponsePacket() { ResponseCode = HttpStatusCode.NotFound  };
+                ret = new ResponsePacket() { ResponseCode = HttpStatusCode.NotFound };
             }
 
             return ret;
@@ -60,8 +62,17 @@ namespace BasicWebServer
 
         private ResponsePacket FileLoader(string path, string ext, ExtensionInfo extInfo)
         {
-            var text = File.ReadAllText(WebsitePath + extInfo.FilePath + Path.GetFileName(path));
-            var ret = new ResponsePacket() { Data = Encoding.UTF8.GetBytes(text), ContentType = extInfo.ContentType, Encoding = Encoding.UTF8 };
+            ResponsePacket ret;
+            try
+            {
+                var text = File.ReadAllText(WebsitePath + extInfo.FilePath + Path.GetFileName(path));
+                ret = new ResponsePacket() { Data = Encoding.UTF8.GetBytes(text), ContentType = extInfo.ContentType, Encoding = Encoding.UTF8 };
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, $"Error in file loader: {ex.Message}");
+                ret = new ResponsePacket() { ResponseCode = HttpStatusCode.NotFound };
+            }
 
             return ret;
         }
