@@ -50,12 +50,22 @@ namespace BasicWebServer
 
         private ResponsePacket ImageLoader(string path, string ext, ExtensionInfo extInfo)
         {
-            var fullPath = (WebsitePath + extInfo.FilePath + Path.GetFileName(path));
-            var fStream = new FileStream(fullPath, FileMode.Open, FileAccess.Read);
-            var br = new BinaryReader(fStream);
-            var ret = new ResponsePacket() { Data = br.ReadBytes((int)fStream.Length), ContentType = extInfo.ContentType };
-            br.Close();
-            fStream.Close();
+            ResponsePacket ret;
+            try
+            {
+                var fullPath = (WebsitePath + extInfo.FilePath + Path.GetFileName(path));
+                var fStream = new FileStream(fullPath, FileMode.Open, FileAccess.Read);
+                var br = new BinaryReader(fStream);
+                var text = File.ReadAllText(WebsitePath + extInfo.FilePath + Path.GetFileName(path));
+                ret = new ResponsePacket() { Data = br.ReadBytes((int)fStream.Length), ContentType = extInfo.ContentType };
+                br.Close();
+                fStream.Close();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, $"Error in file loader: {ex.Message}");
+                ret = new ResponsePacket() { ResponseCode = HttpStatusCode.NotFound };
+            }
 
             return ret;
         }
