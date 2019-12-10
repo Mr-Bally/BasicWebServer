@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 
@@ -13,6 +14,8 @@ namespace BasicWebServer
         private readonly Dictionary<string, ExtensionInfo> extFolderMap;
 
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
+        private List<Route> Routes { get; set; }
 
         public Router(string path)
         {
@@ -31,18 +34,49 @@ namespace BasicWebServer
             };
         }
 
+        public void AddRoute(Route route)
+        {
+            Routes.Add(route);
+        }
+
         public ResponsePacket Route(string method, string path, Dictionary<string, string> kvParams)
         {
+            var httpMethod = method.ToUpper();
             var ext = Path.GetExtension(path);
-            ResponsePacket ret = null;
+            ResponsePacket ret;
+            Route route = Routes.FirstOrDefault(r => httpMethod == r.Verb.ToUpper() && path == r.Path);
 
-            if (extFolderMap.TryGetValue(ext, out ExtensionInfo extInfo))
+            if (route != null)
             {
-                ret = extInfo.Loader(path, ext, extInfo);
+                string redirect = route.Action(kvParams);
+
+                if (string.IsNullOrEmpty(redirect))
+                {
+                    if (extFolderMap.TryGetValue(ext, out ExtensionInfo extInfo))
+                    {
+                        ret = extInfo.Loader(path, ext, extInfo);
+                    }
+                    else
+                    {
+                        ret = new ResponsePacket() { ResponseCode = HttpStatusCode.NotFound };
+                    }
+                }
+                else
+                {
+                    // Respond with redirect.
+                    ret = new ResponsePacket() { Redirect = redirect };
+                }
             }
-            else
+            else 
             {
-                ret = new ResponsePacket() { ResponseCode = HttpStatusCode.NotFound };
+                if (extFolderMap.TryGetValue(ext, out ExtensionInfo extInfo))
+                {
+                    ret = extInfo.Loader(path, ext, extInfo);
+                }
+                else
+                {
+                    ret = new ResponsePacket() { ResponseCode = HttpStatusCode.NotFound };
+                }
             }
 
             return ret;
