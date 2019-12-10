@@ -15,7 +15,7 @@ namespace BasicWebServer
 
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
-        private List<Route> Routes { get; set; }
+        private List<Route> Routes = new List<Route>();
 
         public Router(string path)
         {
